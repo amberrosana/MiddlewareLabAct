@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +14,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/admin-page', function (){
-        return view('adminPage');
-    })->middleware('admin');
+    Route::get('/all-users/admin', [UserController::class, 'showAllUsers'])->name('showAllUsers')->middleware('admin');
 });
 
 Route::middleware('guest')->group(function () {
