@@ -45,11 +45,19 @@
         <p>Email: {{ Auth::user()->email }}</p>
     </div>
 
+    <div>
         <form action="{{ route('logout') }}" method="POST">
             @method('POST')
             @csrf
             <button type="submit">Logout</button>
         </form>
     </div>
+
+    @if (Auth::user()->isAdmin())
+        <div>
+            <a href="/all-users/admin">View All Users</a>
+        </div>
+    @endif
+    
 </body>
 </html>
