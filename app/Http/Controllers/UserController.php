@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function showAllUsers() {
-        $users = User::orderBy('name')
-        ->where('role' === 'user')
-        ->get();
+        $users = User::orderBy('id')->get();
 
         return view('allUsers', ['users' => $users]);
     }
